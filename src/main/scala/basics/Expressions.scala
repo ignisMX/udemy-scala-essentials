@@ -59,4 +59,22 @@ object Expressions extends App {
   //Recap
   //Expressions is "Give me the value of something"
   //Instructions is "Do something"
+
+  //Task
+  // 1. Difference between "hello world" and println("hello world")
+  // Answer: "hello world" is an expression and println("hello world") is an instruction
+
+  // 2. Give me the result of the following code:
+  val someValue = {
+    2 < 3
+  }
+
+  // someValue returns a boolean: true
+
+  val someOtherValue = {
+    if (someValue) 239 else 986
+    42
+  }
+
+  // someOtherValue returns an Integer: 42
 }
