@@ -4,7 +4,7 @@ import scala.language.postfixOps
 
 object MethodNotations extends App {
 
-  class Person(val name: String, favoriteMovie: String) {
+  class Person(val name: String, favoriteMovie: String, val age: Int = 0) {
 
     def likes(movie: String): Boolean = movie == this.favoriteMovie
 
@@ -17,6 +17,16 @@ object MethodNotations extends App {
     def isAlive: Boolean = true
 
     def apply(): String = s"Hi, my name is $name and I like $favoriteMovie"
+
+    def +(nickname: String): Person = new Person(s"${this.name} $nickname", this.favoriteMovie)
+
+    def unary_+ : Person = new Person(this.name, this.favoriteMovie, this.age + 1)
+
+    def learns(topic: String): String = s"${this.name} is learning $topic"
+
+    def learnsScala: String = this learns "Scala"
+
+    def apply(times: Int): String = s"${this.name} watched ${this.favoriteMovie} $times times"
   }
 
   private val mary = new Person("Mary", "Inception")
@@ -51,5 +61,12 @@ object MethodNotations extends App {
   println(mary.apply())
   println(mary()) //equivalent to mary.apply()
 
+  println((mary + "The Rockstar").apply())
+  println((+mary).age)
+
+  println(mary learns "Java")
+  println(mary learnsScala)
+
+  println(mary(3))
 
 }
