@@ -1,6 +1,6 @@
 package oobasics
 
-object InheritanceAndTraits extends App {
+object Inheritance extends App {
 
   //Any class on the same class can extends for Animal but classes outside of this file
   //can't extends from Animal
