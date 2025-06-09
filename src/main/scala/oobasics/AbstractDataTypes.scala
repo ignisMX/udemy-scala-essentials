@@ -7,6 +7,13 @@ object AbstractDataTypes extends App {
     def eat: Unit
   }
 
+  trait ColdBlooded
+
+  trait Feline
+
+  //This syntax is allowed
+  class Tiger extends ColdBlooded, Feline
+
   class Dog extends Animal {
     override val creatureType: String = "Canine"
 
@@ -20,7 +27,7 @@ object AbstractDataTypes extends App {
     def eat(animal: Animal): Unit
   }
 
-  class Crocodile extends Animal with Carnivore {
+  class Crocodile extends Animal with Carnivore with ColdBlooded {
     override val creatureType: String = "Croc"
 
     def eat: Unit = println("ñamñam")
