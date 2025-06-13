@@ -84,7 +84,6 @@ trait MyTransformer[-A, B] {
   def transform(value: A): B
 }
 
-
 object MyListTest extends App {
   val listOne: MyList[Int] = new Cons(1, Empty)
   println(listOne.head)
