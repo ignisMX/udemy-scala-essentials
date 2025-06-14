@@ -28,7 +28,7 @@ object CaseClasses extends App {
   //6. Case classes are serializable
   //AKka
 
-  //7. Case calses have extractor patterns - Case classes can be used in PATTERN MATCHING
+  //7. Case classes have extractor patterns - Case classes can be used in PATTERN MATCHING
   case object UnitedKingdom {
     def name: String = "The UK of GB and NI"
   }
