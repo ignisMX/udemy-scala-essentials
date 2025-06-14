@@ -112,5 +112,8 @@ object MyListTest extends App {
   println(listTwo.flatMap(new MyTransformer[Int, MyList[Int]] {
     override def transform(value: Int): MyList[Int] = new Cons(value, new Cons(value + 1, Empty))
   }).toString)
+
+  val listFive: MyList[Int] = new Cons(1, new Cons(2, new Cons(3, Empty)))
+  println(listFive == listTwo)
 }
 
