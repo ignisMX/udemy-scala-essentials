@@ -29,6 +29,22 @@ object WhatsAFunction extends App {
     - what's the type of this function
     - hwo to do it
    */
+
+  val concatenator = new Function2[String, String, String] {
+    override def apply(valueOne: String, valueTwo: String): String = s"$valueOne $valueTwo"
+  }
+
+  println(concatenator("Omar", "Enrique"))
+
+  val superAdder:Function[Int, Function[Int,Int]] = new Function[Int, Function1[Int,Int]]{
+    override def apply(numberOne: Int): Function1[Int, Int] = new Function[Int,Int]{
+      override def apply(numberTwo: Int): Int = numberTwo + numberOne
+    }
+  }
+
+  val adder3=superAdder(3)
+  println(adder3(4))
+  println(superAdder(3)(4))
 }
 
 trait MyFunction[A, B] {
