@@ -31,12 +31,14 @@ object AnonymousFunction extends App {
   val niceAdder: (Int, Int) => Int = _ + _
 
   println(niceIncrementer(5))
-  println(niceAdder(8,5))
+  println(niceAdder(8, 5))
 
   /*
   1. MyList: replace all FunctionX call with lambdas
   2. Rewrite the "special" adder as anonymous function
+  */
 
-  * */
+  val superAdder: Int => Int => Int = elementOne => elementTwo => elementOne + elementTwo
+  println(superAdder(3)(4))
 
 }
