@@ -25,6 +25,8 @@ abstract class MyList[+A] {
 
   def filter(predicate: A => Boolean): MyList[A]
 
+  def withFilter(predicate: A => Boolean): MyList[A]
+
   def flatMap[B](transformer: A => MyList[B]): MyList[B]
 
   def ++[B >: A](list: MyList[B]): MyList[B]
@@ -55,6 +57,8 @@ case object Empty extends MyList[Nothing] {
 
   def filter(predicate: Nothing => Boolean): MyList[Nothing] = Empty
 
+  def withFilter(predicate: Nothing => Boolean): MyList[Nothing] = Empty
+
   def ++[B >: Nothing](list: MyList[B]): MyList[B] = list
 
   def foreach(consumer: Nothing => Unit): Unit = ()
@@ -82,6 +86,10 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
     else s"$h ${t.printElements}"
 
   def filter(predicate: A => Boolean): MyList[A] =
+    if (predicate(h)) new Cons(h, t.filter(predicate))
+    else t.filter(predicate)
+
+  def withFilter(predicate: A => Boolean): MyList[A] =
     if (predicate(h)) new Cons(h, t.filter(predicate))
     else t.filter(predicate)
 
@@ -160,5 +168,27 @@ object MyListTest extends App {
   println(listSix.zipWith(listThree, _ + "-" + _))
 
   println(listTwo.fold(0)(_ + _))
+
+  val mappedList = for {
+    number <- listSix
+    string <- listThree
+  } yield s"$number-$string"
+
+  println(mappedList)
+
+  val filteredList = for {
+    element <- listTwo
+    if (element % 2 == 0)
+  } yield element
+
+  println(filteredList)
+
+  val flattedMap = for {
+    element <- listThree
+    nestedList <- new Cons(element, new Cons(s"$element-flatted", Empty))
+  } yield nestedList
+
+
+  println(flattedMap)
 }
 
