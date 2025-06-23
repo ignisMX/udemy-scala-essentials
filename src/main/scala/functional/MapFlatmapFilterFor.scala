@@ -43,4 +43,10 @@ object MapFlatmapFilterFor extends App {
   // syntax overload
   list.map { x => x * 2 }
 
+  /*
+
+  1. does MyList support for-comprehensions?
+  2. A small collection of at most ONE element - Maybe[+T]
+    -map, flatMap, filter
+   */
 }
